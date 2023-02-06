@@ -5,16 +5,17 @@ from guestbook import main
 import os
 import json
 
-class TestGuestbook(unittest.TestCase):
+
+class TestGuestBook(unittest.TestCase):
 
     def setUp(self):
-        if os.path.exists('../cli application/guestbook.txt'):
-            os.remove('../cli application/guestbook.txt')
+        if os.path.exists('../guestbook.txt'):
+            os.remove('../guestbook.txt')
 
     def test_new_command(self):
         sys.argv = ['main', 'new', 'Test message 1']
         main()
-        with open('../cli application/guestbook.txt', "r") as file:
+        with open('../guestbook.txt', "r") as file:
             content = file.read().strip()
         self.assertEqual(content, "Test message 1")
 
@@ -34,7 +35,7 @@ class TestGuestbook(unittest.TestCase):
         main()
         sys.argv = ['main', 'edit', '1', 'Test message 2']
         main()
-        with open('../cli application/guestbook.txt', "r") as file:
+        with open('../guestbook.txt', "r") as file:
             content = file.read().strip()
         self.assertEqual(content, "Test message 2")
 
@@ -43,7 +44,7 @@ class TestGuestbook(unittest.TestCase):
         main()
         sys.argv = ['main', 'delete', '1']
         main()
-        with open('../cli application/guestbook.txt', "r") as file:
+        with open('../guestbook.txt', "r") as file:
             content = file.read().strip()
         self.assertEqual(content, "")
 
